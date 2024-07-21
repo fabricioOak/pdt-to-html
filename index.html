@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>PDF to HTML Converter</title>
+	</head>
+	<body>
+		<h1>Upload PDF File</h1>
+		<form id="uploadForm">
+			<input type="file" id="fileInput" />
+			<button type="submit">Upload and Convert</button>
+		</form>
+		<div id="result"></div>
+
+		<script>
+			document
+				.getElementById("uploadForm")
+				.addEventListener("submit", async function (event) {
+					event.preventDefault(); // Evita o recarregamento da página
+
+					const input = document.getElementById("fileInput");
+					if (input.files.length === 0) {
+						alert("Please select a file!");
+						return;
+					}
+
+					const file = input.files[0];
+					const formData = new FormData();
+					formData.append("file", file);
+
+					try {
+						document.getElementById(
+							"result"
+						).innerHTML = `<p>Converting PDF to HTML...</p>`;
+
+						const response = await fetch("http://localhost:3000/convert", {
+							method: "POST",
+							body: formData,
+						});
+						if (!response.ok) {
+							const errorText = await response.text();
+							throw new Error(errorText);
+						}
+						const result = await response.json();
+						document.getElementById(
+							"result"
+						).innerHTML = `<a href="${result.url}" target="_blank">View Converted HTML</a>`;
+						console.log("Conversion successful"); // Log para depuração
+					} catch (error) {
+						console.error("Error:", error); // Log para depuração
+						document.getElementById("result").innerHTML =
+							'<p style="color: red;">Error converting PDF to HTML: ' +
+							error.message +
+							"</p>";
+					}
+				});
+		</script>
+	</body>
+</html>

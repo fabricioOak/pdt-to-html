@@ -1,0 +1,100 @@
+/* Reset some basic elements */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: Arial, sans-serif;
+	line-height: 1.6;
+	background-color: #f4f4f4;
+	color: #333;
+	padding: 20px;
+}
+
+.container {
+	max-width: 960px;
+	margin: 0 auto;
+	background: #fff;
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin-bottom: 20px;
+	color: #333;
+}
+
+p {
+	margin-bottom: 20px;
+}
+
+a {
+	color: #3498db;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+ul {
+	list-style: none;
+	margin-bottom: 20px;
+}
+
+ul li {
+	padding-left: 20px;
+	position: relative;
+}
+
+ul li::before {
+	content: "•";
+	position: absolute;
+	left: 0;
+	color: #3498db;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+}
+
+table th,
+table td {
+	border: 1px solid #ddd;
+	padding: 10px;
+	text-align: left;
+}
+
+table th {
+	background-color: #f4f4f4;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+button {
+	display: inline-block;
+	background: #3498db;
+	color: #fff;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background 0.3s ease;
+}
+
+button:hover {
+	background: #2980b9;
+}
